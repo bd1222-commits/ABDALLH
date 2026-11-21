@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم بنجاح — حمّل كتابك الآن</title>
+    <style>
+        /* ===== FONTS ===== */
+        @font-face {
+            font-family: 'Foda';
+            src: url('assets/fonts/Foda-Free-Font.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Lifta';
+            src: url('assets/fonts/Lifta-Black.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Lifta', 'Segoe UI', Tahoma, sans-serif;
+            background-color: #FFFFFF;
+            color: #0B0B0B;
+            line-height: 1.7;
+            overflow-x: hidden;
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        :root {
+            --orange: #FF6500;
+            --black: #0B0B0B;
+            --white: #FFFFFF;
+            --orange-hover: #e65a00;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes checkmark {
+            0% { stroke-dashoffset: 100; }
+            100% { stroke-dashoffset: 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes confetti {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(11,11,11,0.06);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--orange);
+        }
+        .logo-text {
+            font-family: 'Lifta', sans-serif;
+            font-size: 1rem;
+            color: var(--black);
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: var(--orange);
+        }
+
+        /* ===== SUCCESS CONTENT ===== */
+        .success-page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .success-page::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,101,0,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .success-card {
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInUp 0.7s ease both;
+        }
+
+        /* Success Icon */
+        .success-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 32px;
+            background: rgba(255,101,0,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease 0.2s both;
+            position: relative;
+        }
+        .success-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,101,0,0.15);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+        .success-checkmark {
+            width: 48px;
+            height: 48px;
+            stroke: var(--orange);
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .success-checkmark path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: checkmark 0.8s ease 0.5s forwards;
+        }
+
+        .success-title {
+            font-family: 'Foda', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--orange);
+            margin-bottom: 12px;
+            animation: fadeInUp 0.7s ease 0.3s both;
+        }
+        .success-subtitle {
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.15rem;
+            color: var(--black);
+            margin-bottom: 8px;
+            animation: fadeInUp 0.7s ease 0.4s both;
+        }
+        .success-desc {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            animation: fadeInUp 0.7s ease 0.5s both;
+        }
+
+        /* Download Button */
+        .download-area {
+            animation: fadeInUp 0.7s ease 0.6s both;
+        }
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            border-radius: 16px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.15rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-download:hover {
+            background: var(--orange-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 45px rgba(255,101,0,0.4);
+        }
+        .btn-download:hover::before {
+            left: 100%;
+        }
+        .btn-download svg {
+            width: 24px;
+            height: 24px;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        /* Secondary Actions */
+        .secondary-actions {
+            margin-top: 32px;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.7s ease 0.7s both;
+        }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--black);
+            border: 2px solid rgba(11,11,11,0.12);
+            border-radius: 50px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-2px);
+        }
+        .btn-outline svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            animation: confetti 3s ease-in forwards;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid rgba(11,11,11,0.06);
+        }
+        .footer p {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        .footer span {
+            color: var(--orange);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .success-page {
+                padding: 40px 16px;
+            }
+            .success-icon-wrapper {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 24px;
+            }
+            .success-checkmark {
+                width: 36px;
+                height: 36px;
+            }
+            .btn-download {
+                padding: 18px 36px;
+                font-size: 1.05rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .secondary-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-outline {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Confetti -->
+    <div class="confetti-container" id="confetti"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="assets/images/logo.jpg" alt="AbdAllah AI Creator" class="logo-img">
+                <div class="logo-text"><span>AbdAllah</span> | AI Creator</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SUCCESS CONTENT -->
+    <main class="success-page">
+        <div class="success-card">
+            <div class="success-icon-wrapper">
+                <svg class="success-checkmark" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"/>
+                </svg>
+            </div>
+            <h1 class="success-title">تم التسجيل بنجاح!</h1>
+            <h2 class="success-subtitle">مبروك، كتابك جاهز للتحميل 🎉</h2>
+            <p class="success-desc">
+                شكرًا لاهتمامك! كتاب «من الفكرة إلى الربح» جاهز الآن.<br>
+                اضغط الزر أدناه لتحميل نسختك المجانية والبدء في رحلتك نحو بناء مشروعك الرقمي.
+            </p>
+            <div class="download-area">
+                <!-- ✏️ IMPORTANT: Replace this URL with the actual PDF file link -->
+                <a href="https://t.me/abdullahaicreator/4" target="_blank" rel="noopener" class="btn-download" id="downloadBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <span>تحميل كتاب من الفكرة إلى الربح PDF</span>
+                </a>
+            </div>
+            <div class="secondary-actions">
+                <a href="https://www.instagram.com/abdullah.aicreator?jplx=MWZxbGx1a2tydXg0cw==" target="_blank" rel="noopener" class="btn-outline">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    تابعني على انستغرام
+                </a>
+                <a href="index.html" class="btn-outline">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    العودة للصفحة الرئيسية
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة &copy; 2026 — <span>AbdAllah AI Creator</span></p>
+    </footer>
+
+    <!-- تحميل الإعدادات والمتغيرات مع منع الكاش -->
+    <script src="config.js?v=20261121c"></script>
+
+    <script>
+        const OFFICIAL_INSTAGRAM_URL = "https://www.instagram.com/abdullah.aicreator?jplx=MWZxbGx1a2tydXg0cw==";
+
+        // تحديث رابط تحميل الكتاب ورابط انستغرام من متغيرات البيئة
+        if (window.APP_CONFIG) {
+            if (window.APP_CONFIG.PDF_DOWNLOAD_URL) {
+                const downloadBtn = document.getElementById('downloadBtn');
+                if (downloadBtn) {
+                    downloadBtn.href = window.APP_CONFIG.PDF_DOWNLOAD_URL;
+                }
+            }
+        }
+        document.querySelectorAll('a[href*="instagram.com"]').forEach(link => {
+            link.href = OFFICIAL_INSTAGRAM_URL;
+        });
+
+        // ===== Confetti Effect =====
+        function createConfetti() {
+            const container = document.getElementById('confetti');
+            const colors = ['#FF6500', '#0B0B0B', '#FF8C3A', '#FFB074', '#333'];
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = Math.random() * 2 + 's';
+                piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                piece.style.width = (Math.random() * 8 + 6) + 'px';
+                piece.style.height = (Math.random() * 8 + 6) + 'px';
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(piece);
+            }
+            // Remove after animation
+            setTimeout(() => container.innerHTML = '', 5000);
+        }
+        createConfetti();
+    </script>
+</body>
+</html>
