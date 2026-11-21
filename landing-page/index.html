@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من الفكرة إلى الربح — كتاب مجاني</title>
+    <meta name="description" content="حمّل كتاب من الفكرة إلى الربح مجانًا — دليل عملي لبناء مشروعك الرقمي باستخدام الذكاء الاصطناعي.">
+    <style>
+        /* ===== FONTS ===== */
+        @font-face {
+            font-family: 'Foda';
+            src: url('assets/fonts/Foda-Free-Font.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Lifta';
+            src: url('assets/fonts/Lifta-Black.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Lifta', 'Segoe UI', Tahoma, sans-serif;
+            background-color: #FFFFFF;
+            color: #0B0B0B;
+            line-height: 1.7;
+            overflow-x: hidden;
+            direction: rtl;
+        }
+
+        /* ===== VARIABLES ===== */
+        :root {
+            --orange: #FF6500;
+            --black: #0B0B0B;
+            --white: #FFFFFF;
+            --orange-hover: #e65a00;
+            --shadow: 0 20px 60px rgba(0,0,0,0.1);
+            --shadow-lg: 0 30px 80px rgba(0,0,0,0.15);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== HEADER / NAV ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(11,11,11,0.06);
+            transition: box-shadow 0.3s ease;
+        }
+        .header.scrolled {
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--orange);
+        }
+        .logo-text {
+            font-family: 'Lifta', sans-serif;
+            font-size: 1rem;
+            color: var(--black);
+            font-weight: bold;
+        }
+        .logo-text span {
+            color: var(--orange);
+        }
+        .header-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .header-cta:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,101,0,0.3);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,101,0,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,101,0,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease both;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255,101,0,0.08);
+            border: 1px solid rgba(255,101,0,0.2);
+            border-radius: 50px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.85rem;
+            color: var(--orange);
+            margin-bottom: 24px;
+        }
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--orange);
+        }
+        .hero-title {
+            font-family: 'Foda', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: var(--orange);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .hero-subtitle {
+            font-family: 'Foda', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: var(--black);
+            line-height: 1.4;
+            margin-bottom: 24px;
+        }
+        .hero-desc {
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.05rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background: var(--orange-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255,101,0,0.35);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+            border-radius: 14px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.05rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(11,11,11,0.2);
+        }
+        .btn-secondary svg, .btn-primary svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Hero Book Visual */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+        .book-showcase {
+            position: relative;
+            perspective: 1000px;
+        }
+        .book-image-wrapper {
+            position: relative;
+            animation: float 5s ease-in-out infinite;
+        }
+        .book-image-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 30px;
+            background: radial-gradient(ellipse, rgba(0,0,0,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .book-cover {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.5s ease;
+        }
+        .book-cover:hover {
+            transform: scale(1.03) rotateY(-3deg);
+        }
+        .book-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(255,101,0,0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 80px 24px;
+            background: #FAFAFA;
+        }
+        .features-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Foda', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            color: var(--orange);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.05rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 56px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--white);
+            padding: 36px 28px;
+            border-radius: 20px;
+            border: 1px solid rgba(11,11,11,0.06);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 0;
+            background: var(--orange);
+            transition: height 0.4s ease;
+            border-radius: 0 0 4px 4px;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+            border-color: rgba(255,101,0,0.15);
+        }
+        .feature-card:hover::before {
+            height: 100%;
+        }
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,101,0,0.08);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--orange);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .feature-card h3 {
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.15rem;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.92rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== FORM ELEMENTS ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.95rem;
+            color: var(--black);
+            margin-bottom: 8px;
+            text-align: right;
+        }
+        .email-input-wrapper {
+            position: relative;
+        }
+        .email-input {
+            width: 100%;
+            padding: 18px 24px 18px 50px;
+            border: 2px solid rgba(11,11,11,0.1);
+            border-radius: 14px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1rem;
+            color: var(--black);
+            background: #FAFAFA;
+            outline: none;
+            transition: all 0.3s ease;
+            direction: ltr;
+            text-align: right;
+        }
+        .email-input:focus {
+            border-color: var(--orange);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(255,101,0,0.1);
+        }
+        .email-input::placeholder {
+            color: #aaa;
+            font-family: 'Lifta', sans-serif;
+        }
+        .email-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            stroke: #aaa;
+            fill: none;
+            stroke-width: 2;
+            pointer-events: none;
+            transition: stroke 0.3s ease;
+        }
+        .email-input:focus ~ .email-icon {
+            stroke: var(--orange);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 18px 36px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-submit:hover {
+            background: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255,101,0,0.35);
+        }
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-submit svg {
+            width: 20px;
+            height: 20px;
+        }
+        .form-note {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 16px;
+        }
+        .form-note svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            margin-left: 4px;
+            stroke: #999;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Messages */
+        .form-message {
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            display: none;
+            animation: fadeInUp 0.4s ease;
+        }
+        .form-message.error {
+            background: #FFF0F0;
+            color: #D32F2F;
+            border: 1px solid #FFCDD2;
+            display: block;
+        }
+        .form-message.success {
+            background: #F0FFF4;
+            color: #2E7D32;
+            border: 1px solid #C8E6C9;
+            display: block;
+        }
+        .form-message.duplicate {
+            background: #FFF8E1;
+            color: #F57F17;
+            border: 1px solid #FFECB3;
+            display: block;
+        }
+
+        /* Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .btn-submit.loading .spinner { display: inline-block; }
+        .btn-submit.loading .btn-text { display: none; }
+        .btn-submit.loading .btn-icon { display: none; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 32px 24px;
+            background: var(--black);
+            text-align: center;
+        }
+        .footer p {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+        .footer span {
+            color: var(--orange);
+        }
+
+        /* ===== MODAL POPUP ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(11, 11, 11, 0.72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-container {
+            background: var(--white);
+            border-radius: 24px;
+            max-width: 560px;
+            width: 100%;
+            padding: 44px 36px 36px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            position: relative;
+            border: 2px solid rgba(255, 101, 0, 0.18);
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+            direction: rtl;
+        }
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #F5F5F5;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+        .modal-close:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+        .modal-step {
+            display: none;
+        }
+        .modal-step.active {
+            display: block;
+            animation: fadeIn 0.35s ease forwards;
+        }
+        .modal-title {
+            font-family: 'Foda', sans-serif;
+            font-size: clamp(1.35rem, 3.5vw, 1.8rem);
+            color: var(--orange);
+            margin-bottom: 20px;
+            line-height: 1.35;
+            text-align: right;
+        }
+        .modal-body-text {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.98rem;
+            color: var(--black);
+            line-height: 1.85;
+            margin-bottom: 24px;
+            text-align: right;
+        }
+        .modal-body-text p {
+            margin-bottom: 14px;
+        }
+        .modal-highlight-text {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin-top: 16px;
+        }
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn-modal-instagram {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 28px;
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.05rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(255, 101, 0, 0.28);
+        }
+        .btn-modal-instagram:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(255, 101, 0, 0.38);
+        }
+        .btn-modal-instagram svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+        .btn-modal-followed {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 28px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            font-family: 'Lifta', sans-serif;
+            font-size: 1.05rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-modal-followed:hover {
+            background: #2b2b2b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(11, 11, 11, 0.2);
+        }
+        .btn-back-step {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: #777;
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.88rem;
+            cursor: pointer;
+            margin-bottom: 16px;
+            padding: 4px 0;
+            transition: color 0.2s ease;
+        }
+        .btn-back-step:hover {
+            color: var(--orange);
+        }
+        .btn-back-step svg {
+            width: 16px;
+            height: 16px;
+        }
+        .modal-text {
+            font-family: 'Lifta', sans-serif;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            text-align: right;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-desc {
+                max-width: 100%;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .book-cover {
+                max-width: 300px;
+            }
+        }
+        @media (max-width: 600px) {
+            .header-inner {
+                padding: 10px 16px;
+            }
+            .logo-text {
+                font-size: 0.85rem;
+            }
+            .header-cta {
+                padding: 8px 18px;
+                font-size: 0.8rem;
+            }
+            .hero {
+                padding: 100px 16px 40px;
+                min-height: auto;
+            }
+            .book-cover {
+                max-width: 240px;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .features {
+                padding: 60px 16px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-container {
+                padding: 32px 20px 24px;
+                border-radius: 20px;
+            }
+            .modal-title {
+                font-size: 1.3rem;
+                padding-left: 28px;
+            }
+            .modal-body-text {
+                font-size: 0.92rem;
+            }
+            .btn-modal-instagram, .btn-modal-followed {
+                font-size: 1rem;
+                padding: 14px 20px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <img src="assets/images/logo.jpg" alt="AbdAllah AI Creator" class="logo-img">
+                <div class="logo-text"><span>AbdAllah</span> | AI Creator</div>
+            </div>
+            <button type="button" class="header-cta open-modal-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                <span>حمّل الكتاب</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    كتاب مجاني بالكامل
+                </div>
+                <h1 class="hero-title">من الفكرة إلى الربح</h1>
+                <h2 class="hero-subtitle">دليلك العملي لبناء مشروعك الرقمي</h2>
+                <p class="hero-desc">
+                    اكتشف كيف تحوّل أفكارك إلى مصدر دخل حقيقي باستخدام الذكاء الاصطناعي. 
+                    خطوات واضحة، استراتيجيات مجرّبة، ومحتوى عملي يمكنك تطبيقه فورًا — 
+                    كل ذلك في كتاب واحد مجاني.
+                </p>
+                <div class="hero-actions">
+                    <button type="button" class="btn-primary open-modal-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        <span>احصل على نسختك المجانية</span>
+                    </button>
+                    <a href="https://www.instagram.com/abdullah.aicreator?jplx=MWZxbGx1a2tydXg0cw==" target="_blank" rel="noopener" class="btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        <span>تابعني على انستغرام</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="book-showcase">
+                    <div class="book-glow"></div>
+                    <div class="book-image-wrapper">
+                        <img src="assets/images/book-cover.jpg" alt="كتاب من الفكرة إلى الربح" class="book-cover" loading="eager">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="features-inner">
+            <h2 class="section-title animate-on-scroll">ماذا ستتعلم من هذا الكتاب؟</h2>
+            <p class="section-subtitle animate-on-scroll">محتوى عملي مبني على تجارب حقيقية يساعدك على الانطلاق بثقة</p>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <h3>أفكار مشاريع مجرّبة</h3>
+                    <p>اكتشف أفكار مشاريع رقمية ناجحة يمكنك البدء بها اليوم دون رأس مال كبير.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3>استراتيجيات الذكاء الاصطناعي</h3>
+                    <p>تعلّم كيف توظّف أدوات الذكاء الاصطناعي لتسريع نمو مشروعك وزيادة أرباحك.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3>خطوات واضحة للتنفيذ</h3>
+                    <p>خطة عمل مرحلية تأخذك من الصفر إلى إطلاق مشروعك الرقمي خطوة بخطوة.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3>طرق تحقيق الدخل</h3>
+                    <p>استراتيجيات مجرّبة لتحويل محتواك ومهاراتك إلى مصادر دخل متعددة ومستدامة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة &copy; 2026 — <span>AbdAllah AI Creator</span></p>
+    </footer>
+
+    <!-- MODAL POPUP -->
+    <div class="modal-overlay" id="bookModal" aria-hidden="true">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button type="button" class="modal-close" id="closeModalBtn" aria-label="إغلاق">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- الخطوة الأولى: متابعة انستغرام -->
+            <div class="modal-step active" id="modalStep1">
+                <h3 class="modal-title" id="modalTitle">📘 قبل ما تحصل على كتابك المجاني…</h3>
+                <div class="modal-body-text">
+                    <p>هذا الكتاب اشتغلنا عليه كثير، وحرصنا أن يكون دليلًا عمليًا يساعدك تنتقل من مجرد فكرة إلى بداية حقيقية في عالم المنتجات الرقمية.</p>
+                    <p>وبما أننا قدمناه لك مجانًا، نتمنى منك تقدير هذا الجهد بأبسط شيء: متابعة حسابنا على إنستغرام.</p>
+                    <p>دعمك بمتابعة بسيطة يعني لنا الكثير، ويساعدنا نستمر في تقديم محتوى وأدلة مفيدة لك.</p>
+                    <p class="modal-highlight-text">تابع الحساب، ثم ارجع واحصل على نسختك المجانية ❤️</p>
+                </div>
+                <div class="modal-actions">
+                    <a href="https://www.instagram.com/abdullah.aicreator?jplx=MWZxbGx1a2tydXg0cw==" target="_blank" rel="noopener" class="btn-modal-instagram" id="modalInstagramLink">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                        <span>متابعة الحساب</span>
+                    </a>
+                    <button type="button" class="btn-modal-followed" id="goToStep2Btn">
+                        <span>تابعت الحساب ✓</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- الخطوة الثانية: إدخال البريد الإلكتروني -->
+            <div class="modal-step" id="modalStep2">
+                <button type="button" class="btn-back-step" id="backToStep1Btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <span>الرجوع للخطوة السابقة</span>
+                </button>
+                <h3 class="modal-title">أدخل بريدك الإلكتروني</h3>
+                <p class="modal-text">أدخل بريدك الإلكتروني للحصول على رابط تحميل الكتاب فورًا.</p>
+
+                <form id="modalEmailForm" novalidate>
+                    <div class="form-group">
+                        <label for="modalEmail">البريد الإلكتروني</label>
+                        <div class="email-input-wrapper">
+                            <input 
+                                type="email" 
+                                id="modalEmail" 
+                                class="email-input" 
+                                placeholder="example@email.com" 
+                                required
+                                autocomplete="email"
+                            >
+                            <svg class="email-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit" id="modalSubmitBtn">
+                        <span class="btn-text">احصل على كتابك</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        <span class="spinner"></span>
+                    </button>
+                </form>
+                <div class="form-message" id="modalFormMessage"></div>
+                <p class="form-note">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    بياناتك آمنة ولن نشاركها مع أي طرف آخر
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تحميل الإعدادات والمتغيرات مع منع الكاش -->
+    <script src="config.js?v=20261121c"></script>
+
+    <script>
+        // الرابط الرسمي والمباشر لحساب إنستغرام
+        const OFFICIAL_INSTAGRAM_URL = "https://www.instagram.com/abdullah.aicreator?jplx=MWZxbGx1a2tydXg0cw==";
+
+        // تحديث جميع روابط إنستغرام والتأكد القاطع من أنها تشير لحساب إنستغرام فقط
+        document.querySelectorAll('#modalInstagramLink, a.btn-secondary, a[href*="instagram.com"]').forEach(link => {
+            link.href = OFFICIAL_INSTAGRAM_URL;
+        });
+
+        // حدث نقر صريح ومباشر لزر متابعة الحساب لضمان فتحه في تبويب جديد دائماً
+        const modalInstagramLink = document.getElementById('modalInstagramLink');
+        if (modalInstagramLink) {
+            modalInstagramLink.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(OFFICIAL_INSTAGRAM_URL, '_blank', 'noopener,noreferrer');
+            };
+        }
+
+        // ===== Header scroll effect =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ===== Scroll animations =====
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ===== Modal Logic =====
+        const bookModal = document.getElementById('bookModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalStep1 = document.getElementById('modalStep1');
+        const modalStep2 = document.getElementById('modalStep2');
+        const goToStep2Btn = document.getElementById('goToStep2Btn');
+        const backToStep1Btn = document.getElementById('backToStep1Btn');
+        const modalEmail = document.getElementById('modalEmail');
+        const modalFormMessage = document.getElementById('modalFormMessage');
+
+        function openModal() {
+            bookModal.classList.add('active');
+            bookModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            // Default to Step 1
+            showStep(1);
+        }
+
+        function closeModal() {
+            bookModal.classList.remove('active');
+            bookModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            // Reset message
+            if (modalFormMessage) {
+                modalFormMessage.className = 'form-message';
+                modalFormMessage.textContent = '';
+            }
+        }
+
+        function showStep(stepNumber) {
+            if (stepNumber === 1) {
+                modalStep1.classList.add('active');
+                modalStep2.classList.remove('active');
+            } else {
+                modalStep1.classList.remove('active');
+                modalStep2.classList.add('active');
+                setTimeout(() => {
+                    modalEmail.focus();
+                }, 100);
+            }
+        }
+
+        // Attach open-modal to all target buttons
+        document.querySelectorAll('.open-modal-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        // Close modal triggers
+        closeModalBtn.addEventListener('click', closeModal);
+        bookModal.addEventListener('click', (e) => {
+            if (e.target === bookModal) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && bookModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Navigation between steps
+        goToStep2Btn.addEventListener('click', () => {
+            showStep(2);
+        });
+        backToStep1Btn.addEventListener('click', () => {
+            showStep(1);
+        });
+
+        // ===== Email validation =====
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // ===== Duplicate prevention (client-side) =====
+        function hasSubmittedEmail(email) {
+            const submitted = JSON.parse(localStorage.getItem('submittedEmails') || '[]');
+            return submitted.includes(email.toLowerCase().trim());
+        }
+        function saveSubmittedEmail(email) {
+            const submitted = JSON.parse(localStorage.getItem('submittedEmails') || '[]');
+            submitted.push(email.toLowerCase().trim());
+            localStorage.setItem('submittedEmails', JSON.stringify(submitted));
+        }
+
+        // ===== Modal Form Submission =====
+        const modalForm = document.getElementById('modalEmailForm');
+        const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+
+        // الرابط يتم جلبه تلقائيًا من ملف .env / config.js مع رابط احتياطي مباشر
+        const SCRIPT_URL = (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_APPS_SCRIPT_URL) || 'https://script.google.com/macros/s/AKfycbyQVpUweOoqOPYTSvJu7xAMvL11SF9AVaGTZH74OFMsTBq0wyJdKqDA5Gq7sNB2j3-w/exec';
+
+        modalForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = modalEmail.value.trim();
+            
+            // Reset message
+            modalFormMessage.className = 'form-message';
+            modalFormMessage.textContent = '';
+
+            // Validate
+            if (!email) {
+                showModalMsg('يرجى إدخال بريدك الإلكتروني', 'error');
+                modalEmail.focus();
+                return;
+            }
+            if (!isValidEmail(email)) {
+                showModalMsg('يرجى إدخال بريد إلكتروني صحيح', 'error');
+                modalEmail.focus();
+                return;
+            }
+
+            // Client-side duplicate check
+            if (hasSubmittedEmail(email)) {
+                showModalMsg('تم تسجيل هذا البريد مسبقًا! جارٍ نقلك لصفحة التحميل...', 'duplicate');
+                setTimeout(() => {
+                    window.location.href = 'success.html';
+                }, 1500);
+                return;
+            }
+
+            // Show loading
+            modalSubmitBtn.classList.add('loading');
+            modalSubmitBtn.disabled = true;
+
+            try {
+                // إرسال البريد الإلكتروني إلى Google Apps Script كـ JSON
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+                
+                const result = await response.json();
+
+                if (result.success === true || result.status === 'success') {
+                    saveSubmittedEmail(email);
+                    showModalMsg('تم حفظ البريد بنجاح! جارٍ التوجيه لصفحة التحميل...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'success.html';
+                    }, 1500);
+                } else if (result.status === 'duplicate' || (result.message && result.message.indexOf('مسجّل') !== -1)) {
+                    saveSubmittedEmail(email);
+                    showModalMsg('هذا البريد مسجّل بالفعل مسبقًا! جارٍ التوجيه لصفحة التحميل...', 'duplicate');
+                    setTimeout(() => {
+                        window.location.href = 'success.html';
+                    }, 1500);
+                } else {
+                    // عرض رسالة الخطأ القادمة من السيرفر بوضوح دون الانتقال
+                    showModalMsg(result.message || 'حدث خطأ أثناء حفظ البريد في السجل. يرجى المحاولة مرة أخرى.', 'error');
+                }
+            } catch (error) {
+                // في حال تعذر الاتصال بالخادم
+                showModalMsg('تعذر الاتصال بـ Google Apps Script. يرجى التحقق من اتصالك بالإنترنت وصلاحيات السكريبت.', 'error');
+            } finally {
+                modalSubmitBtn.classList.remove('loading');
+                modalSubmitBtn.disabled = false;
+            }
+        });
+
+        function showModalMsg(text, type) {
+            modalFormMessage.textContent = text;
+            modalFormMessage.className = `form-message ${type}`;
+        }
+    </script>
+</body>
+</html>

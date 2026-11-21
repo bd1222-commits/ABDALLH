@@ -1,0 +1,17 @@
+{
+  "name": "from-idea-to-profit-landing-page",
+  "version": "1.0.0",
+  "description": "صفحة هبوط احترافية لكتاب «من الفكرة إلى الربح»",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js"
+  },
+  "keywords": [
+    "landing-page",
+    "ebook",
+    "arabic"
+  ],
+  "author": "AbdAllah | AI Creator",
+  "license": "ISC"
+}
